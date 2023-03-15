@@ -7,16 +7,22 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpForce = 100f;
 
+    [SerializeField]
+    private AudioClip sfxJump;
+
     private Animator anim;
 
     private Rigidbody rigidbody;
 
     private bool jump = false;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +31,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             anim.Play("Jump");
+            audioSource.PlayOneShot (sfxJump);
             rigidbody.useGravity = true;
             jump = true;
         }
