@@ -20,14 +20,17 @@ public class Object : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        transform.Translate(Vector3.left * (ObjectSpeed * Time.deltaTime));
-        if (transform.localPosition.x <= resetPosition)
+        if (!GameManager.instance.GameOver)
         {
-            Vector3 newPos =
-                new Vector3(startPosition,
-                    transform.position.y,
-                    transform.position.z);
-            transform.position = newPos;
+            transform.Translate(Vector3.left * (ObjectSpeed * Time.deltaTime));
+            if (transform.localPosition.x <= resetPosition)
+            {
+                Vector3 newPos =
+                    new Vector3(startPosition,
+                        transform.position.y,
+                        transform.position.z);
+                transform.position = newPos;
+            }
         }
     }
 }
