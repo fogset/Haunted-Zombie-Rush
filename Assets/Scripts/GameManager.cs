@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    [SerializeField]
+    private GameObject mainMenu;
+
     private bool playerActive = false;
 
     private bool gameOver = false;
+
+    private bool gameStarted = false;
 
     public bool PlayerActive
     {
@@ -26,6 +32,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool GameStarted
+    {
+        get
+        {
+            return gameStarted;
+        }
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -38,6 +52,7 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad (gameObject);
+        Assert.IsNotNull (mainMenu);
     }
 
     // Start is called before the first frame update
@@ -58,5 +73,11 @@ public class GameManager : MonoBehaviour
     public void PlayerStartGame()
     {
         playerActive = true;
+    }
+
+    public void EnterGame()
+    {
+        mainMenu.SetActive(false);
+        gameStarted = true;
     }
 }
