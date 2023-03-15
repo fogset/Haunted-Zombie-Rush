@@ -13,6 +13,9 @@ public class Rock : Object
     [SerializeField]
     float speed;
 
+    [SerializeField]
+    float RotateSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +37,7 @@ public class Rock : Object
             Vector3 direction =
                 target.y == topPosition.y ? Vector3.up : Vector3.down;
             transform.localPosition += direction * Time.deltaTime * speed;
-
+            RotateByDegrees();
             yield return null;
         }
 
@@ -43,5 +46,10 @@ public class Rock : Object
         Vector3 newTarget =
             target.y == topPosition.y ? bottomPosition : topPosition;
         StartCoroutine(Move(newTarget));
+    }
+
+    void RotateByDegrees()
+    {
+        transform.Rotate(new Vector3(0, RotateSpeed, 0) * Time.deltaTime);
     }
 }

@@ -131,3 +131,4 @@ MonoBehaviour:
   topPosition: {x: 0, y: 22, z: 0}
   bottomPosition: {x: 0, y: 8, z: 0}
   speed: 2
+  RotateSpeed: 100
